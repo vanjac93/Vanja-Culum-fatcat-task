@@ -24,6 +24,9 @@ const config = {
             node: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
+            alias: 
+            [    '@homework-task': './src']
+            
         },
     },
     parser: '@typescript-eslint/parser',
@@ -67,7 +70,7 @@ const config = {
         'react/prop-types': 'off',
         'react-hooks/exhaustive-deps': 'error',
         'no-undef': 'error',
-        'no-console': 'error',
+        'no-console': 'off',
         'no-unused-vars': 'error',
         'import/order': [
             'error',

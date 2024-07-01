@@ -2,8 +2,7 @@ import clsx from 'clsx';
 
 import { Card, CardType } from './Card';
 
-// eslint-disable-next-line no-undef
-const vscodeProjectLink = `vscode://file/${__CWD__}`;
+const vscodeProjectLink = `vscode://file/${import.meta.dirname}`;
 
 const cards: CardType[] = [
     {
