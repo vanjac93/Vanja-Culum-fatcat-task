@@ -1,6 +1,17 @@
+import { PropsWithChildren } from 'react';
+
 import clsx from 'clsx';
 
-export const Button = ({ children, onClick, className }) => {
+interface ButtonProps {
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    className?: string;
+}
+
+export const Button = ({
+    children,
+    onClick,
+    className,
+}: PropsWithChildren<ButtonProps>) => {
     return (
         <button
             className={clsx(

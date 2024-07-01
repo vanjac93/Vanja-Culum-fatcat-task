@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 
-import { Card } from './Card.jsx';
+import { Card, CardType } from './Card';
 
 // eslint-disable-next-line no-undef
 const vscodeProjectLink = `vscode://file/${__CWD__}`;
 
-const cards = [
+const cards: CardType[] = [
     {
         title: 'Transfer the project to TypeScript',
         text: 'Your first task involves transitioning this project from JavaScript to TypeScript.',

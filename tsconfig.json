@@ -5,14 +5,19 @@
         "jsx": "react-jsx",
         "noImplicitThis": true,
         "target": "esnext",
+        "baseUrl": ".",
         "module": "ESNext",
+        "noEmit": true,
         "moduleResolution": "node",
         "declaration": false,
         "esModuleInterop": true,
         "isolatedModules": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "paths": {
+            "@homework-task/*": ["src/*"]
+        }
     },
     "include": ["src/**/*"],
     "exclude": [

@@ -1,4 +1,9 @@
-export const Hero = ({ title, image }) => {
+export interface HeroType {
+    title: string;
+    image: string;
+}
+
+export const Hero = ({ title, image }: HeroType) => {
     return (
         <div className="flex row justify-center items-center gap-4 h-screen">
             <div className="w-4/12">
