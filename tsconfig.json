@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "jsx": "react-jsx",
+        "noImplicitThis": true,
+        "target": "esnext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "declaration": false,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": ["src/**/*"],
+    "exclude": [
+        "node_modules",
+        "build",
+        "dist",
+        "build/lib",
+        "scripts",
+        "es",
+        "lib",
+        "tests/**",
+        ".storybook/**",
+        ".idea",
+        ".html",
+        "src/**/*.test.js",
+        "src/**/*.test.ts",
+        "src/**/*.stories.js",
+        "src/**/*.stories.ts",
+        "src/types"
+    ]
+}
