@@ -7,6 +7,8 @@ import './styles.css';
 import { Form } from './components/form';
 import { z } from 'zod';
 import InputController from './components/form/controllers/InputController';
+import Generator from './features/PageGenerator';
+import dummyImg from '@homework-task/pl-hero.png';
 
 const client = new QueryClient();
 
@@ -26,49 +28,85 @@ const defaultValues: TestFormType = {
 };
 
 function Test() {
-    const mutation = useMutation<TestFormType, Error, TestFormType>({
-        mutationKey: ['test'],
-        mutationFn: (data) => {
-            console.log('mut fn', data);
-            return new Promise((res, rej) => {
-                setTimeout(() => {
-                    res(data);
-                }, 2000);
-            });
-        },
-    });
-
-    const { isPending } = mutation;
-
     return (
-        <Form
-            defaultValues={defaultValues}
-            mutation={mutation}
-            successMessage="Well done"
-            validationSchema={validationSchema}
-            renderForm={({ control }) => {
-                return (
-                    <>
-                        <InputController
-                            control={control}
-                            name="title"
-                            placeholder="Enter title"
-                            label="Title"
-                        />
-                        <InputController
-                            control={control}
-                            name="body"
-                            placeholder="Enter body"
-                            label="Body"
-                        />
-                        <button type="submit">
-                            {isPending ? 'Loading...' : 'Submit'}
-                        </button>
-                    </>
-                );
-            }}
+        <Generator
+            layout={[
+                {
+                    type: 'layoutSection',
+                    props: {
+                        background: 'bg-yellow',
+                    },
+                    components: [
+                        {
+                            type: 'layoutSection',
+                            props: {
+                                background: 'bg-slate-500',
+                            },
+                            components: [
+                                {
+                                    type: 'componentHero',
+                                    props: {
+                                        title: 'First hero',
+                                        image: dummyImg,
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            type: 'componentHero',
+                            props: {
+                                title: 'Second hero',
+                                image: dummyImg,
+                            },
+                        },
+                    ],
+                },
+            ]}
         />
     );
+    // const mutation = useMutation<TestFormType, Error, TestFormType>({
+    //     mutationKey: ['test'],
+    //     mutationFn: (data) => {
+    //         console.log('mut fn', data);
+    //         return new Promise((res, rej) => {
+    //             setTimeout(() => {
+    //                 res(data);
+    //             }, 2000);
+    //         });
+    //     },
+    // });
+
+    // const { isPending } = mutation;
+
+    // return (
+    //     <Form
+    //         defaultValues={defaultValues}
+    //         mutation={mutation}
+    //         successMessage="Well done"
+    //         validationSchema={validationSchema}
+    //         renderForm={({ control }) => {
+    //             return (
+    //                 <>
+    //                     <InputController
+    //                         control={control}
+    //                         name="title"
+    //                         placeholder="Enter title"
+    //                         label="Title"
+    //                     />
+    //                     <InputController
+    //                         control={control}
+    //                         name="body"
+    //                         placeholder="Enter body"
+    //                         label="Body"
+    //                     />
+    //                     <button type="submit">
+    //                         {isPending ? 'Loading...' : 'Submit'}
+    //                     </button>
+    //                 </>
+    //             );
+    //         }}
+    //     />
+    // );
 }
 
 function App() {

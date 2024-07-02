@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-interface PanelShowcaseProps {
+export interface PanelShowcaseProps {
     items: ItemType[];
 }
 
