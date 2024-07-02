@@ -8,7 +8,6 @@ import { Form } from './components/form';
 import { z } from 'zod';
 import InputController from './components/form/controllers/InputController';
 import Generator from './features/PageGenerator';
-import dummyImg from '@homework-task/pl-hero.png';
 import PageGenerator from './features/PageGenerator';
 
 const client = new QueryClient();
@@ -42,7 +41,7 @@ function Test() {
                             type: 'componentHero',
                             props: {
                                 title: 'Second hero',
-                                image: dummyImg,
+                                image: '',
                             },
                         },
                     ],
@@ -57,7 +56,7 @@ function Test() {
                             type: 'componentHero',
                             props: {
                                 title: 'First hero',
-                                image: dummyImg,
+                                image: '',
                             },
                         },
                     ],

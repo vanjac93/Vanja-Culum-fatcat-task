@@ -1,5 +1,5 @@
 import { Button } from '@homework-task/components/Button';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 export interface CardsProps {
     cards: CardType[];
