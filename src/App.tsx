@@ -9,6 +9,7 @@ import { z } from 'zod';
 import InputController from './components/form/controllers/InputController';
 import Generator from './features/PageGenerator';
 import dummyImg from '@homework-task/pl-hero.png';
+import PageGenerator from './features/PageGenerator';
 
 const client = new QueryClient();
 
@@ -29,7 +30,7 @@ const defaultValues: TestFormType = {
 
 function Test() {
     return (
-        <Generator
+        <PageGenerator
             layout={[
                 {
                     type: 'layoutSection',
@@ -38,24 +39,24 @@ function Test() {
                     },
                     components: [
                         {
-                            type: 'layoutSection',
-                            props: {
-                                background: 'bg-slate-500',
-                            },
-                            components: [
-                                {
-                                    type: 'componentHero',
-                                    props: {
-                                        title: 'First hero',
-                                        image: dummyImg,
-                                    },
-                                },
-                            ],
-                        },
-                        {
                             type: 'componentHero',
                             props: {
                                 title: 'Second hero',
+                                image: dummyImg,
+                            },
+                        },
+                    ],
+                },
+                {
+                    type: 'layoutSection',
+                    props: {
+                        background: 'bg-slate-500',
+                    },
+                    components: [
+                        {
+                            type: 'componentHero',
+                            props: {
+                                title: 'First hero',
                                 image: dummyImg,
                             },
                         },
