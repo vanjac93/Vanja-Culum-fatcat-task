@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { Hero, HeroProps } from '@homework-task/components/Hero';
 import {
     ItemsShowcase,
@@ -8,7 +10,7 @@ import {
     PanelShowcase,
     PanelShowcaseProps,
 } from '@homework-task/components/PanelShowcase';
-import { ReactNode } from 'react';
+
 import { ItemType, PageItemType } from './types';
 
 export default function PageItem({ pageItem }: { pageItem: PageItemType }) {

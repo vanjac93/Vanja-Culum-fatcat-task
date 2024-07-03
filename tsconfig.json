@@ -5,14 +5,24 @@
         "strictNullChecks": true,
         "noImplicitThis": true,
         "baseUrl": ".",
+        "module": "esnext",
+        "noEmit": true,
+        "target": "esnext",
         "jsx": "react-jsx",
         "esModuleInterop": true,
+        "allowJs": true,
         "moduleResolution": "node",
         "paths": {
             "@homework-task/*": ["src/*"]
         }
     },
-    "include": ["src/**/*"],
+    "include": [
+        "src/**/*",
+        "vite.config.ts",
+        ".eslintrc.cjs",
+        "postcss.config.js",
+        "tailwind.config.js"
+    ],
     "exclude": [
         "node_modules",
         "build",

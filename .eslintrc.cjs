@@ -14,6 +14,7 @@ const config = {
         'plugin:react-hooks/recommended',
         'eslint:recommended',
         'plugin:import/recommended',
+        'plugin:import/typescript',
         'plugin:prettier/recommended',
         'prettier',
     ],
@@ -21,12 +22,10 @@ const config = {
     settings: {
         react: { version: '18.2' },
         'import/resolver': {
+            typescript: true,
             node: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
-            alias: 
-            [    '@homework-task': './src']
-            
         },
     },
     parser: '@typescript-eslint/parser',
@@ -46,6 +45,8 @@ const config = {
         ecmaFeatures: {
             jsx: true,
         },
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
     },
     overrides: [
         {
@@ -54,11 +55,19 @@ const config = {
             ],
             files: ['*.ts', '*.tsx', '*.cjs', '*.mjs'],
             parserOptions: {
-                project: path.join(__dirname, 'tsconfig.json'),
+                project: './tsconfig.json',
             },
         },
     ],
     rules: {
+        '@typescript-eslint/no-misused-promises': [
+            2,
+            {
+                checksVoidReturn: {
+                    attributes: false,
+                },
+            },
+        ],
         'react-refresh/only-export-components': [
             'warn',
             {

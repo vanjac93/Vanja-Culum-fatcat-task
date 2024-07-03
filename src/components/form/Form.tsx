@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { UseMutationResult } from '@tanstack/react-query';
 import {
     DefaultValues,
     FieldValues,
@@ -7,7 +9,6 @@ import {
     useForm,
 } from 'react-hook-form';
 import { ZodType } from 'zod';
-import { UseMutationResult } from '@tanstack/react-query';
 
 type FormProps<T extends FieldValues, G> = {
     validationSchema: ZodType<G>;
@@ -32,8 +33,8 @@ export default function Form<T extends FieldValues, G>({
     const { mutate, isSuccess } = mutation;
     const { handleSubmit } = methods;
 
-    async function onSubmit(data: T) {
-        await mutate(data);
+    function onSubmit(data: T) {
+        mutate(data);
     }
 
     return (

@@ -1,7 +1,8 @@
 import { FieldValues, useController } from 'react-hook-form';
-import { Field, Input, Label } from '../';
-import { FormControllerProps } from './types';
+
 import ControllerHelpText from './ControllerHelpText';
+import { FormControllerProps } from './types';
+import { Field, Input, Label } from '../';
 
 export default function InputController<T extends FieldValues>(
     props: Omit<FormControllerProps<T, HTMLInputElement>, 'render'>
