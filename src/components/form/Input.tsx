@@ -1,12 +1,5 @@
 import { InputHTMLAttributes } from 'react';
 
-type InputProps = InputHTMLAttributes<HTMLInputElement>;
-
-export const Input = (props: InputProps) => {
-    return (
-        <input
-            className="border-none text-[13px] outline-none bg-transparent"
-            {...props}
-        />
-    );
+export const Input = (props: InputHTMLAttributes<HTMLInputElement>) => {
+    return <input className="px-4 py-2 min-w-[80px]" {...props} />;
 };

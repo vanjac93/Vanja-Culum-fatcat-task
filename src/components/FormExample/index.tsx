@@ -1,7 +1,12 @@
-import { MutationFunction, useMutation } from '@tanstack/react-query';
+import {
+    MutationFunction,
+    useMutation,
+    useQueryClient,
+} from '@tanstack/react-query';
 
 import { ExampleFormType } from './types';
 import { defaultValues, validationSchema } from './util';
+import { Button } from '../Button';
 import InputController from '../form/controllers/InputController';
 import Form from '../form/Form';
 
@@ -17,13 +22,17 @@ const mutationFn: MutationFunction<ExampleFormType, ExampleFormType> = (
         title: '',
         body: '',
     }));
-    // .then((data) => data as ExampleFormType);
 };
 
 function usePostMutation() {
+    const queryClient = useQueryClient();
+
     return useMutation<ExampleFormType, Error, ExampleFormType>({
         mutationKey: ['post-create'],
         mutationFn,
+        onSuccess: () => {
+            return queryClient.invalidateQueries({ queryKey: ['posts'] });
+        },
     });
 }
 
@@ -54,9 +63,9 @@ export const FormExample = () => {
                             placeholder="Enter body"
                             label="Body"
                         />
-                        <button type="submit">
+                        <Button type="submit">
                             {isPending ? 'Loading...' : 'Submit'}
-                        </button>
+                        </Button>
                     </>
                 );
             }}

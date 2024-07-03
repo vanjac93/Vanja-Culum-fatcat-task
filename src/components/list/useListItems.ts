@@ -1,18 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 
-interface PostType {
-    id: string;
-    body: string;
-    userId: string;
-    title: string;
-}
+import { PostType } from './types';
 
 const POSTS_GET = 'https://jsonplaceholder.typicode.com/posts';
 
 export const useListItems = () =>
     useQuery<PostType[]>({
-        queryKey: ['list-items'],
-        initialData: [],
+        queryKey: ['posts'],
         queryFn: () => {
             return fetch(POSTS_GET)
                 .then((data) => data.json())

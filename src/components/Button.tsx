@@ -1,19 +1,14 @@
-import { PropsWithChildren } from 'react';
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
 import { clsx } from 'clsx';
 
-interface ButtonProps {
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
-    className?: string;
-}
-
-export const Button = ({
-    children,
-    onClick,
-    className,
-}: PropsWithChildren<ButtonProps>) => {
+export const Button = (
+    props: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>
+) => {
+    const { className, children, onClick, ...rest } = props;
     return (
         <button
+            {...rest}
             className={clsx(
                 'rounded-lg',
                 'px-4',

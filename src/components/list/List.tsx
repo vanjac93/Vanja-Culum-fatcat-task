@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 
+import { ListItem } from './ListItem';
 import { useListItems } from './useListItems';
 
 export const List = () => {
@@ -32,26 +33,8 @@ export const List = () => {
                 'rounded-2xl'
             )}
         >
-            <h2
-                className={clsx(
-                    'text-black',
-                    'text-2xl',
-                    'leading-normal',
-                    'font-medium'
-                )}
-            >
-                {' '}
-                List Example
-            </h2>
-            <ul className="text-gray80 flex flex-col gap-8">
-                {data?.map(({ id, body, title, userId }) => (
-                    <li className="flex gap-8" key={id}>
-                        <span>{id}</span>
-                        <span>{userId}</span>
-                        <span>{body}</span>
-                        <span>{title}</span>
-                    </li>
-                ))}
+            <ul className="text-gray80 flex flex-col gap-4">
+                {data?.map((post) => <ListItem item={post} key={post.id} />)}
             </ul>
         </div>
     );

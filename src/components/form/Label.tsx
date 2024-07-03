@@ -6,5 +6,9 @@ interface LabelProps {
 export const Label = (props: LabelProps) => {
     const { name, text } = props;
 
-    return <label htmlFor={name}>{text}</label>;
+    return (
+        <label className="font-extralight" htmlFor={name}>
+            {text}
+        </label>
+    );
 };

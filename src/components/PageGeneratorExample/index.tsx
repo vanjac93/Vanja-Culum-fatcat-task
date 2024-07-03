@@ -1,40 +1,22 @@
+import { useState } from 'react';
+
 import PageGenerator from '@homework-task/features/PageGenerator';
 
+import { dummyLayouts } from './util';
+
 export default function PageGeneratorExample() {
+    const [selectedLayout, setSelectedLayout] = useState(0);
+
     return (
-        <PageGenerator
-            layout={[
-                {
-                    type: 'layoutSection',
-                    props: {
-                        background: 'bg-yellow',
-                    },
-                    components: [
-                        {
-                            type: 'componentHero',
-                            props: {
-                                title: 'Second hero',
-                                image: '',
-                            },
-                        },
-                    ],
-                },
-                {
-                    type: 'layoutSection',
-                    props: {
-                        background: 'bg-slate-500',
-                    },
-                    components: [
-                        {
-                            type: 'componentHero',
-                            props: {
-                                title: 'First hero',
-                                image: '',
-                            },
-                        },
-                    ],
-                },
-            ]}
-        />
+        <section>
+            <select onChange={(e) => setSelectedLayout(+e.currentTarget.value)}>
+                {dummyLayouts.map((_, indx) => (
+                    <option key={indx} value={indx}>
+                        {indx}
+                    </option>
+                ))}
+            </select>
+            <PageGenerator layout={dummyLayouts[selectedLayout]} />
+        </section>
     );
 }
