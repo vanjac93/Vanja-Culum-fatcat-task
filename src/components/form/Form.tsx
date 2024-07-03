@@ -13,15 +13,17 @@ import { ZodType } from 'zod';
 type FormProps<T extends FieldValues, G> = {
     validationSchema: ZodType<G>;
     renderForm: (methods: UseFormReturn<T>) => ReactNode;
-    mutation: UseMutationResult<T, Error, T, unknown>;
+    mutation: UseMutationResult<T, Error, T>;
     defaultValues: DefaultValues<T>;
     successMessage: string;
+    resetOnSubmit?: true;
 };
 
 export default function Form<T extends FieldValues, G>({
     renderForm,
     mutation,
     successMessage,
+    resetOnSubmit,
     validationSchema,
     defaultValues,
 }: FormProps<T, G>) {
@@ -30,17 +32,22 @@ export default function Form<T extends FieldValues, G>({
         defaultValues,
     });
 
-    const { mutate, isSuccess } = mutation;
-    const { handleSubmit } = methods;
+    const { mutateAsync, isSuccess } = mutation;
+    const { handleSubmit, reset } = methods;
 
-    function onSubmit(data: T) {
-        mutate(data);
+    async function onSubmit(data: T) {
+        await mutateAsync(data);
+        if (resetOnSubmit) {
+            reset({
+                ...defaultValues,
+            });
+        }
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {renderForm(methods)}
-            {isSuccess && <p>{successMessage}</p>}
+            {isSuccess && <p className="text-mainGreen">{successMessage}</p>}
         </form>
     );
 }

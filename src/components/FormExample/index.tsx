@@ -1,30 +1,43 @@
-import { useMutation } from '@tanstack/react-query';
+import { MutationFunction, useMutation } from '@tanstack/react-query';
 
 import { ExampleFormType } from './types';
 import { defaultValues, validationSchema } from './util';
 import InputController from '../form/controllers/InputController';
 import Form from '../form/Form';
 
-export default function FormExample() {
-    const mutation = useMutation<ExampleFormType, Error, ExampleFormType>({
-        mutationKey: ['test'],
-        mutationFn: (data) => {
-            console.log('mut fn', data);
-            return new Promise((res) => {
-                setTimeout(() => {
-                    res(data);
-                }, 2000);
-            });
-        },
+const POST_URL = 'https://jsonplaceholder.typicode.com/posts';
+
+const mutationFn: MutationFunction<ExampleFormType, ExampleFormType> = (
+    data: ExampleFormType
+) => {
+    return fetch(POST_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+    }).then(() => ({
+        title: '',
+        body: '',
+    }));
+    // .then((data) => data as ExampleFormType);
+};
+
+function usePostMutation() {
+    return useMutation<ExampleFormType, Error, ExampleFormType>({
+        mutationKey: ['post-create'],
+        mutationFn,
     });
+}
+
+export const FormExample = () => {
+    const mutation = usePostMutation();
 
     const { isPending } = mutation;
 
     return (
         <Form
             defaultValues={defaultValues}
+            resetOnSubmit
             mutation={mutation}
-            successMessage="Well done"
+            successMessage="Post created successfully!"
             validationSchema={validationSchema}
             renderForm={({ control }) => {
                 return (
@@ -49,4 +62,4 @@ export default function FormExample() {
             }}
         />
     );
-}
+};

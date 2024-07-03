@@ -3,8 +3,8 @@ interface LabelProps {
     name: string;
 }
 
-export default function Label(props: LabelProps) {
+export const Label = (props: LabelProps) => {
     const { name, text } = props;
 
     return <label htmlFor={name}>{text}</label>;
-}
+};
