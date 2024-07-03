@@ -100,6 +100,13 @@ export const Landing = () => {
                     src="/media/landing/hero.svg"
                     alt=""
                 />
+                <h1 className="font-bold text-2xl text-center p-8 m-8">
+                    Curiosity killed the cat, but it does no harm to FatCat
+                    developers.
+                </h1>
+                <h1 className="font-medium text-2xl text-center p-8 m-8">
+                    Scroll down to see finished components with examples.
+                </h1>
                 <div
                     className={clsx(
                         'col-span-full',

@@ -12,7 +12,16 @@ export const ExampleContainer = (
 ) => {
     const { header, text, children } = props;
     return (
-        <section className="flex flex-col gap-4 p-4 bg-white">
+        <section
+            className={clsx(
+                'flex',
+                'flex-col',
+                'gap-4',
+                'p-4',
+                'bg-white',
+                'rounded-2xl'
+            )}
+        >
             <h2
                 className={clsx(
                     'text-black',

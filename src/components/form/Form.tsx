@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UseMutationResult } from '@tanstack/react-query';
@@ -9,6 +9,8 @@ import {
     useForm,
 } from 'react-hook-form';
 import { ZodType } from 'zod';
+
+import { Message } from '../Message';
 
 type FormProps<T extends FieldValues, G> = {
     validationSchema: ZodType<G>;
@@ -27,17 +29,24 @@ export default function Form<T extends FieldValues, G>({
     validationSchema,
     defaultValues,
 }: FormProps<T, G>) {
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
     const methods = useForm<T>({
         resolver: zodResolver(validationSchema),
         defaultValues,
     });
 
-    const { mutateAsync, isSuccess } = mutation;
+    const { mutateAsync } = mutation;
     const { handleSubmit, reset } = methods;
 
     async function onSubmit(data: T) {
+        if (showSuccessMessage) {
+            setShowSuccessMessage(false);
+        }
+
         await mutateAsync(data);
         if (resetOnSubmit) {
+            setShowSuccessMessage(true);
             reset({
                 ...defaultValues,
             });
@@ -46,8 +55,14 @@ export default function Form<T extends FieldValues, G>({
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+            {showSuccessMessage && (
+                <Message
+                    onClose={() => setShowSuccessMessage(false)}
+                    text={successMessage}
+                    type="success"
+                />
+            )}
             {renderForm(methods)}
-            {isSuccess && <p className="text-mainGreen">{successMessage}</p>}
         </form>
     );
 }

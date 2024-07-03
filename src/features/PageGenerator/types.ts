@@ -1,3 +1,4 @@
+import { DividerProps } from '@homework-task/components/Divider';
 import { HeroProps } from '@homework-task/components/Hero';
 import { ItemsShowcaseProps } from '@homework-task/components/ItemsShowcase';
 import { LayoutSectionProps } from '@homework-task/components/Layout';
@@ -8,6 +9,9 @@ export interface PageGeneratorProps {
 }
 
 export type PageItemType = { components?: PageItemType[] } & (
+    | ({ type: 'divider' } & {
+          props?: DividerProps;
+      })
     | ({ type: 'componentHero' } & {
           props: HeroProps;
       })
@@ -32,4 +36,5 @@ export type ItemType =
     | 'componentHero'
     | 'componentItemsShowcase'
     | 'layoutSection'
+    | 'divider'
     | 'componentPanelShowcase';

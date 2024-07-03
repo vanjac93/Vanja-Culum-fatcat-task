@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { Divider, DividerProps } from '@homework-task/components/Divider';
 import { Hero, HeroProps } from '@homework-task/components/Hero';
 import {
     ItemsShowcase,
@@ -24,6 +25,7 @@ export default function PageItem({ pageItem }: { pageItem: PageItemType }) {
                 ))}
             </Layout>
         ),
+        divider: <Divider {...(props as DividerProps)} />,
         componentHero: <Hero {...(props as HeroProps)} />,
         componentItemsShowcase: (
             <ItemsShowcase {...(props as ItemsShowcaseProps)} />
