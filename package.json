@@ -10,7 +10,7 @@
     "scripts": {
         "dev": "vite --port 3000",
         "build": "vite build",
-        "lint:staged": "lint-staged -c .lintstagedrc.json",
+        "lint:staged": "lint-staged -c lint-staged.config.js",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx",
         "typecheck": "tsc --watch --noEmit",
