@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { PostType } from './types';
+import { UserType } from './types';
 
-const POSTS_GET = 'https://jsonplaceholder.typicode.com/posts';
+const USERS_GET_URL = 'https://jsonplaceholder.typicode.com/users';
 
 export const useListItems = () =>
-    useQuery<PostType[]>({
+    useQuery<UserType[]>({
         queryKey: ['posts'],
         queryFn: () => {
-            return fetch(POSTS_GET)
+            return fetch(USERS_GET_URL)
                 .then((data) => data.json())
-                .then((data) => (data as PostType[]).slice(0, 5));
+                .then((data) => (data as UserType[]).slice(0, 5));
         },
     });

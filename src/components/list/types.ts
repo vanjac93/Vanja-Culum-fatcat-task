@@ -1,6 +1,7 @@
-export interface PostType {
+export interface UserType {
     id: string;
-    body: string;
-    userId: string;
-    title: string;
+    name: string;
+    username: string;
+    email: string;
+    phone: string;
 }

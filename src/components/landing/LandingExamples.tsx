@@ -12,8 +12,8 @@ export const LandingExamples = () => {
         >
             <ExampleContainer
                 header="List Component Example"
-                text={`This is the list component. As there was no mention of a UI with a table, 
-                    and there isn't lots of data to show, I've made list items a simple card-like items.`}
+                text={`This task describes a list format, but doesn't specify it cannot be a table in
+order to show all the columns aligned properly, so it's implemented with a table prepared to be styled further.`}
             >
                 <ListExample />
             </ExampleContainer>

@@ -1,7 +1,14 @@
-import { clsx } from 'clsx';
-
 import { ListItem } from './ListItem';
 import { useListItems } from './useListItems';
+import {
+    Table,
+    TableBody,
+    TableHead,
+    TableHeaderCell,
+    TableRow,
+} from '../table';
+
+const COLUMNS = ['ID', 'Name', 'Username', 'Email', 'Phone'];
 
 export const List = () => {
     const { data, error, isLoading } = useListItems();
@@ -20,22 +27,17 @@ export const List = () => {
     }
 
     return (
-        <div
-            className={clsx(
-                'flex',
-                'w-full',
-                'flex-col',
-                'gap-4',
-                'p-4',
-                'bg-white',
-                'py-6',
-                'px-4',
-                'rounded-2xl'
-            )}
-        >
-            <ul className="text-gray80 flex flex-col gap-4">
-                {data?.map((post) => <ListItem item={post} key={post.id} />)}
-            </ul>
-        </div>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    {COLUMNS.map((column) => (
+                        <TableHeaderCell key={column}>{column}</TableHeaderCell>
+                    ))}
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {data?.map((user) => <ListItem key={user.id} item={user} />)}
+            </TableBody>
+        </Table>
     );
 };
